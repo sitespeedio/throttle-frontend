@@ -1,0 +1,27 @@
+{
+  "root": true,
+  "env": {
+    "node": true,
+    "es6": true
+  },
+  "parserOptions": {
+    "ecmaVersion": 8,
+    "sourceType": "module"
+  },
+  "plugins": ["prettier"],
+  "extends": "eslint:recommended",
+  "rules": {
+    "prettier/prettier": [
+      "error",
+      {
+        "singleQuote": true,
+        "trailingComma": "none",
+        "arrowParens": "avoid",
+        "embeddedLanguageFormatting": "off"
+      }
+    ],
+    "require-atomic-updates": 0,
+    "no-extra-semi": 0,
+    "no-mixed-spaces-and-tabs": 0
+  }
+}

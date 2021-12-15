@@ -1,0 +1,58 @@
+mixin checkbox(name,value)
+        .field.is-grouped
+            p.control
+                label.switch
+                    input(checked=(value===profile) type='checkbox' name=name value=value onclick='handleClick(this);')
+                    span.slider.round
+            p.control
+                label.label.is-large(style='padding-left:10px; color: black') #{name}
+            if (value !== 'stop')
+                p.control(style='padding-top:8px;')
+                    small(style='color: grey;') (up:#{profiles[value].up} down:#{profiles[value].down} rtt:#{profiles[value].rtt})
+doctype html
+html(lang='en')
+    head
+        meta(charset='utf-8')
+        meta(name='viewport' content='width=device-width, initial-scale=1')
+        link(rel='stylesheet' href='/css/bulma.min.css')
+        link(rel='stylesheet' href='/css/extras.css')
+            
+    body 
+        script.
+            function handleClick(e) {
+                let xhr = new XMLHttpRequest();
+                xhr.open("GET", "/api/" + e.value, true);
+                xhr.onload = function() {
+                    if (xhr.status != 200) {
+                        console.error(xhr.responseText);
+                    }
+                } 
+                xhr.send();
+                const inputs = document.querySelectorAll("input[type='checkbox']");
+                for(let i = 0; i < inputs.length; i++) {
+                    if (inputs[i].value !== e.value) {
+                        inputs[i].checked = false;
+                    }   
+                }
+            }
+        section.section.is-medium
+            .container(style='max-width:400px;')
+                .article.message.is-dark
+                    .message-header
+                        p.label.is-large Choose throttling
+                    .message-body
+                        +checkbox('Off','stop')
+                        +checkbox('Cable','cable')
+                        +checkbox('4G','4g')
+                        +checkbox('3GFast','3gfast')
+                        +checkbox('3G','3g')
+                        +checkbox('2G','2g')
+        
+        footer.footer.is-grouped
+            .content.has-text-centered
+                p
+                | ©
+                strong 
+                    a(href='https://www.sitespeed.io') sitespeed.io
+                | &nbsp; 2021 - 
+                a(href='https://www.gnu.org/licenses/quick-guide-gplv3.html') GPLv3
