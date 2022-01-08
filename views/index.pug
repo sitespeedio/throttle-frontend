@@ -7,9 +7,6 @@ mixin checkbox(name,value)
                     span.slider.round
             p.control
                 label.label.is-large(style='padding-left:10px; color: black') #{name}
-            //if (value !== 'stop')
-            //    p.control(style='padding-top:8px;')
-            //        small(style='color: grey;') (up:#{profiles[value].up} down:#{profiles[value].down} rtt:#{profiles[value].rtt})
 block content
     script.
         function handleClick(e) {
@@ -27,6 +24,10 @@ block content
                     inputs[i].checked = false;
                 }   
             }
+            const custom = document.getElementsByClassName('custom');
+            if (custom.length > 0) {
+                custom[0].style.display = 'none';
+            }
         }
     section.section.is-medium
         .container(style='max-width:400px;')
@@ -40,4 +41,12 @@ block content
                     +checkbox('3GFast','3gfast')
                     +checkbox('3G','3g')
                     +checkbox('2G','2g')
-        
+                    if (profile === 'custom')
+                        .custom
+                            .field.is-grouped
+                                p.control
+                                    label.switch
+                                        input(checked=true type='checkbox')
+                                        span.slider.round
+                                p.control
+                                    label.label.is-large(style='padding-left:10px; color: black')  Custom using API
