@@ -49,4 +49,7 @@ block content
                                         input(checked=true type='checkbox')
                                         span.slider.round
                                 p.control
-                                    label.label.is-large(style='padding-left:10px; color: black')  Custom using API
+                                    label.label.is-large(style='padding-left:10px; color: black')  Custom settings using API
+                    - const standard = ['cable', '4g', '3gfast', '3g', '2g', 'custom', 'stop'];
+                    if (!standard.includes(profile)) 
+                        +checkbox(profile,profile)
