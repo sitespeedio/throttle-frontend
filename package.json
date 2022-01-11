@@ -1,7 +1,8 @@
 {
     "name": "throttle-frontend",
     "version": "0.0.1",
-    "description": "",
+    "description": "Frontend for throttle-backend",
+    "private": true,
     "type": "module",
     "exports": "./lib/app.js",
     "engines": {
